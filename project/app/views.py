@@ -1,7 +1,7 @@
 from typing import Deque
 from django.db.models.aggregates import Aggregate, Sum
 from django.shortcuts import redirect, render
-from .models import customerDetails
+from .models import customerDetails, paymentOnEmi
 from .forms import customerDetailsForm, paymentOnEmiForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
@@ -92,7 +92,14 @@ def payment(request, id):
     return render(request, "payment.html", {"id": id})
 
 
-# For Logout...........................
+# Payment Data Page.................................................
+@login_required(login_url="/login")
+def pdata(request):
+    pdd = paymentOnEmi.objects.all()
+    return render(request, "pdata.html", {"pdd":pdd})
+
+
+# For Logout.......................................................
 @login_required(login_url="/login")
 def logoutuser(request):
     logout(request)

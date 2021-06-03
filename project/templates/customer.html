@@ -217,21 +217,32 @@
     // Total Amount
     var totalAmount = document.querySelector("#totalAmount").value;
     var camount = document.querySelector(".camount");
-    camount.innerHTML = totalAmount;
+    // camount.innerHTML = totalAmount;
 
     // Advance Amount
     var advance = document.querySelector("#advance").value;
     var cadvance = document.querySelector(".cadvance");
-    cadvance.innerHTML = advance;
+    // cadvance.innerHTML = advance;
 
     // Due AMount Calculate
     var totalAmount = document.querySelector("#totalAmount").value;
-    var advance = document.querySelector("#advance").value;
-    var dueamt = document.querySelector(".dueAmount").value = totalAmount - advance;
+    var advanceA = document.querySelector("#advance").value;
+    var dueamt = document.querySelector(".dueAmount").value = totalAmount - advanceA;
 
-    var cdue = document.querySelector(".cdue");
-    cdue.innerHTML = dueamt;
-
+    
+    // Due Amount Checking Funtion
+    
+    if (parseInt(totalAmount) < parseInt(advanceA)){
+      alert("Advance Amount Grater than Bill Amount");
+      document.querySelector("#advance").value = 0;
+    
+    }
+    else{
+      var cdue = document.querySelector(".cdue");
+      cdue.innerHTML = dueamt;
+      camount.innerHTML = totalAmount;
+      cadvance.innerHTML = advance;
+    }
 
   };
 </script>

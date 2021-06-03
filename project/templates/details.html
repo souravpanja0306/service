@@ -1,6 +1,6 @@
 {% include "base.html" %} {% block content %}
 <div class="container-fluid">
-  <div class="bg-dark mt-1">
+  <div class="bg-dark mt-2">
     <p class="nav-link text-light text-center">Payment & Due Details</p>
   </div>
   <div class="row">
@@ -38,9 +38,13 @@
               <h5 class="text-danger text-right">{{f.dueAmount}}</h5>
             </td>
           
-            <td><a href="{% url 'paymentPage' f.custimerId %}" class="btn btn-dark btn-sm w-100">Pay</a></td>
+            {% if f.totalAmount == f.advanceAmount %}
+              <td><a href="{% url 'paymentPage' f.custimerId %}" class="btn btn-danger btn-sm w-100 disabled" >Why Pay?</a></td>
+            {% else %}
+              <td><a href="{% url 'paymentPage' f.custimerId %}" class="btn btn-dark btn-sm w-100">Pay</a></td>
+            {% endif %}
           </tr>
-          {% endfor%}
+          {% endfor %}
         </tbody>
         <tfoot class="bg-dark text-light">
           <tr>
@@ -59,6 +63,8 @@
     </div>
   </div>
 </div>
+{{dm}}
+
 {% endblock content %}
 
 {% block scripts %}

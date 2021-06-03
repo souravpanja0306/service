@@ -10,6 +10,7 @@
                 <th>Name</th>
                 <th>Purchase Date</th>
                 <th>Mobile No.</th>
+                <th>No. of Service</th>
                 <th>1st Service</th>
                 <th>2nd Service</th>
                 <th>3rd Service</th>
@@ -18,12 +19,14 @@
                 <th>6th Service</th>
             </tr>
         </thead>
-        {% for dt in dtt %}
+        
         <tbody>
+            {% for dt in dtt %}
             <tr>
                 <td>{{dt.name}}</td>
                 <td>{{dt.purchaseDate}}</td>
                 <td>{{dt.phoneNo}}</td>
+                <td>{{dt.service}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -31,13 +34,15 @@
                 <td></td>
                 <td></td>
             </tr>
+            {% endfor %}
         </tbody>
-        {% endfor %}
-        <tfoot>
+        
+        <tfoot class="bg-dark text-light">
             <tr>
                 <th>Name</th>
                 <th>Purchase Date</th>
                 <th>Mobbile No.</th>
+                <th>No. of Service</th>
                 <th>1st Service</th>
                 <th>2nd Service</th>
                 <th>3rd Service</th>
@@ -51,6 +56,7 @@
 {% endblock content %}
 
 {% block scripts %}
+<!-- Scripts for datatable -->
 <script>
     $(document).ready(function () {
         $('#example').DataTable();
