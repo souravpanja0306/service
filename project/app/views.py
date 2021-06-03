@@ -104,4 +104,5 @@ def logoutuser(request):
 
 @login_required(login_url="/login")
 def service(request):
-    return render(request, "service.html")
+    dtt = customerDetails.objects.all()
+    return render(request, "service.html",{"dtt":dtt})
