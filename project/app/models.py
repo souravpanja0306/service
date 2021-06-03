@@ -6,6 +6,8 @@ class customerDetails(models.Model):
     address = models.CharField(max_length=100)
     phoneNo = models.CharField(max_length=100)
     email = models.EmailField()
+
+    service = models.CharField(max_length=10, null=True, blank=True)
     emi = models.CharField(max_length=10, null=True, blank=True)
 
     modelNameOne = models.CharField(max_length=100)

@@ -42,7 +42,7 @@ def loginPage(request):
         return render(request, "login.html")
 
 
-# For Registration of New Account................
+# For Registration of New Account................................
 def registration(request):
     if request.user.is_authenticated:
         return redirect("/")
@@ -60,7 +60,7 @@ def registration(request):
         return render(request, "registration.html", context)
 
 
-# Create New Customer.......................
+# Create New Customer............................................
 @login_required(login_url="/login")
 def customer(request):
     fm = customerDetailsForm()
@@ -78,7 +78,7 @@ def details(request):
     fmm = customerDetails.objects.all()
     return render(request, "details.html", {"fmm": fmm})
 
-# For Payment Page....................................
+# For Payment Page................................................
 
 
 @login_required(login_url="/login")
