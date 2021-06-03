@@ -1,0 +1,235 @@
+{% include "base.html" %} {% block content %}
+<div class="container-fluid mt-2">
+  <form method="POST" action="/customer">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header bg-dark text-light">
+            <i class="fa fa-user-friends"></i> Customer Details
+          </div>
+          <div class="card-body p-2">
+            <div class="row">
+              <div class="col">
+                <input id="name" name="name" type="text" class="form-control" placeholder="Name" />
+              </div>
+              <div class="col">
+                <input id="address" name="address" type="text" class="form-control" placeholder="Address" />
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <input id="phoneno" name="phoneNo" type="text" class="form-control" placeholder="Phone number" />
+              </div>
+              <div class="col">
+                <input id="email" name="email" type="text" class="form-control" placeholder="Email Id" />
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <div class="form-check m-2">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Option for EMI
+                  </label>
+                </div>
+              </div>
+              <div class="col">
+                <input class="form-control" type="number" placeholder="Tenur/ No. of Year">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-header bg-dark text-light">
+            <i class="fa fa-luggage-cart"></i> Product Details
+          </div>
+          <div class="card-body p-2">
+            <div class="row">
+              <div class="col-sm-5">
+                <input id="modelNameOne" name="modelNameOne" type="text" class="form-control"
+                  placeholder="Model Name" />
+              </div>
+              <div class="col-sm-5">
+                <input id="modelNoOne" name="modelNoOne" type="text" class="form-control" placeholder="Model Number" />
+              </div>
+              <div class="col-sm-2">
+                <input id="quantityOne" name="quantityOne" type="text" class="form-control" placeholder="Quantity" />
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-sm-5">
+                <input id="modelNameTwo" name="modelNameTwo" type="text" class="form-control"
+                  placeholder="Model Name" />
+              </div>
+              <div class="col-sm-5">
+                <input id="modelNoTwo" name="modelNoTwo" type="text" class="form-control" placeholder="Model Number" />
+              </div>
+              <div class="col-sm-2">
+                <input id="quantityTwo" name="quantityTwo" type="text" class="form-control" placeholder="Quantity" />
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <input id="date" name="purchaseDate" type="date" class="form-control" />
+              </div>
+              <div class="col">
+                <input id="totalAmount" name="totalAmount" type="number" class="form-control"
+                  placeholder="Total Amount" />
+              </div>
+              <div class="col">
+                <input id="advance" name="advanceAmount" type="number" class="form-control" placeholder="Advance" />
+              </div>
+              <div class="col">
+                <!-- Hidden Value -->
+                <input type="hidden" name="dueAmount" class="dueAmount">
+
+                <button type="button" class="btn btn-dark w-100" onclick="result()">
+                  Go
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <p class="text-center">Note: Please Check Under Details Carefully *</p>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header bg-dark text-light">
+            <i class="fa fa-user-friends"></i> Personal Informations
+          </div>
+          <ul class="list-group m-2">
+            <li class="list-group-item">
+              <a>Name : <span class="cname text-success"></span></a>
+            </li>
+            <li class="list-group-item">
+              <a>Address : <span class="caddress text-success"></span></a>
+            </li>
+            <li class="list-group-item">
+              <a>Contact No. : <span class="ccontact text-success"></span></a>
+            </li>
+            <li class="list-group-item">
+              <a>Email Id : <span class="cemail text-success"></span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-header bg-dark text-light">
+            <i class="fa fa-luggage-cart"></i> Product Informations
+          </div>
+          <ul class="list-group m-2">
+            <li class="list-group-item d-flex justify-content-around">
+              <a class="col">Product Name 1 : <span class="cproductNameOne text-success"></span></a>
+              <a class="col">Product No. : <span class="cproductNoOne text-success"></span></a>
+              <a class="col">Quantity : <span class="cquantityOne text-success"></span></a>
+            </li>
+            <li class="list-group-item d-flex justify-content-around">
+              <a class="col">Product Name 2 : <span class="cproductNameTwo text-success"></span></a>
+              <a class="col">Product No. : <span class="cproductNoTwo text-success"></span></a>
+              <a class="col">Quantity : <span class="cquantityTwo text-success"></span></a>
+            </li>
+            <li class="list-group-item d-flex justify-content-around">
+              <a class="col">Purchase Date : <span class="cpurchaseDate text-success"></span></a>
+              <a class="col">Amount : <span class="camount text-success"></span></a>
+              <a class="col">Advance : <span class="cadvance text-success"></span></a>
+              <a class="col">Due : <span class="cdue text-danger"></span></a>
+            </li>
+
+            <li class="list-group-item text-center p-2">
+              <button type="submit" class="btn btn-dark btn-sm">Submit</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %} {% block scripts %}
+
+<script>
+  const result = () => {
+    // name
+    var name = document.querySelector("#name").value;
+    var cname = document.querySelector(".cname");
+    cname.innerHTML = name;
+
+    // address
+    var address = document.querySelector("#address").value;
+    var caddress = document.querySelector(".caddress");
+    caddress.innerHTML = address;
+
+    // Phone No
+    var phoneno = document.querySelector("#phoneno").value;
+    var ccontact = document.querySelector(".ccontact");
+    ccontact.innerHTML = phoneno;
+
+    // email ID
+    var email = document.querySelector("#email").value;
+    var cemail = document.querySelector(".cemail");
+    cemail.innerHTML = email;
+
+    // Model Name 1
+    var modelNameOne = document.querySelector("#modelNameOne").value;
+    var cproductNameOne = document.querySelector(".cproductNameOne");
+    cproductNameOne.innerHTML = modelNameOne; //Done
+
+    // Quantity 1
+    var quantityOne = document.querySelector("#quantityOne").value;
+    var cquantityOne = document.querySelector(".cquantityOne");
+    cquantityOne.innerHTML = quantityOne; //Done
+
+    // Moedel No 1
+    var modelNoOne = document.querySelector("#modelNoOne").value;
+    var cproductNoOne = document.querySelector(".cproductNoOne");
+    cproductNoOne.innerHTML = modelNoOne; //Done
+
+    // Model Name 2
+    var modelNameTwo = document.querySelector("#modelNameTwo").value;
+    var cproductNameTwo = document.querySelector(".cproductNameTwo");
+    cproductNameTwo.innerHTML = modelNameTwo; //Done
+
+    // Quantity 2
+    var quantityTwo = document.querySelector("#quantityTwo").value;
+    var cquantityTwo = document.querySelector(".cquantityTwo");
+    cquantityTwo.innerHTML = quantityTwo; //Done
+
+    // Model No 2
+    var modelNoTwo = document.querySelector("#modelNoTwo").value;
+    var cproductNoTwo = document.querySelector(".cproductNoTwo");
+    cproductNoTwo.innerHTML = modelNoTwo; //Done
+
+    // Date
+    var date = document.querySelector("#date").value;
+    var cpurchaseDate = document.querySelector(".cpurchaseDate");
+    cpurchaseDate.innerHTML = date;
+
+    // Total Amount
+    var totalAmount = document.querySelector("#totalAmount").value;
+    var camount = document.querySelector(".camount");
+    camount.innerHTML = totalAmount;
+
+    // Advance Amount
+    var advance = document.querySelector("#advance").value;
+    var cadvance = document.querySelector(".cadvance");
+    cadvance.innerHTML = advance;
+
+    // Due AMount Calculate
+    var totalAmount = document.querySelector("#totalAmount").value;
+    var advance = document.querySelector("#advance").value;
+    var dueamt = document.querySelector(".dueAmount").value = totalAmount - advance;
+
+    var cdue = document.querySelector(".cdue");
+    cdue.innerHTML = dueamt;
+
+
+  };
+</script>
+{% endblock scripts %}

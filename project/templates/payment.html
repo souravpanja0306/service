@@ -1,0 +1,38 @@
+{% include "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="bg-dark mt-2">
+        <p class="nav-link text-light text-center">Payment</p>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card text-center">
+                <div class="card-header bg-dark text-light">
+                    <h4>Customer Registration Id as Ref Id : {{id}}</h4>
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col d-flex">
+                                <input class="form-control m-2" type="number" name="refNo" value="{{id}}">
+
+                                <input class="form-control m-2" type="number" name="paidAmount"
+                                    placeholder="Payment Amount">
+
+                                <input class="form-control m-2" type="date" name="paymentDate">
+                            </div>
+                        </div>
+                        <button type="submit" class="m-2 btn btn-dark w-100">Submit</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    Node: Please Check carefully**
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
