@@ -106,9 +106,9 @@ def logoutuser(request):
     messages.warning(request, "Successfully Logout")
     return redirect("/login")
 
+
+
 # For Service Requirement...........................
-
-
 @login_required(login_url="/login")
 def service(request):
     dtt = customerDetails.objects.all()
