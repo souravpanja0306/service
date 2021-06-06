@@ -14,6 +14,6 @@ urlpatterns = [
     path('pdata', views.pdata, name="pdata"),
     path('details', views.details, name="details"),
     path('service', views.service, name="service"),
-    path('technician/<int:id>', views.technician, name="technician"),
+    path('technician/<int:id>', views.technicianPage, name="technicianPage"),
 
 ]
