@@ -113,3 +113,9 @@ def logoutuser(request):
 def service(request):
     dtt = customerDetails.objects.all()
     return render(request, "service.html",{"dtt":dtt})
+
+
+# For Technician Requirement...........................
+@login_required(login_url="/login")
+def technician(request, id):
+    return render(request, "technician.html", {"id":id})
