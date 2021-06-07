@@ -5,8 +5,8 @@ from django.db.models.deletion import CASCADE
 class customerDetails(models.Model):
     custimerId = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    address = models.CharField(max_length=100)
-    phoneNo = models.CharField(max_length=100)
+    address = models.CharField(max_length=100, null=True)
+    phoneNo = models.CharField(max_length=100, unique=True)
     email = models.EmailField()
 
     service = models.CharField(max_length=10, null=True, blank=True)
@@ -57,8 +57,8 @@ class partsName(models.Model):
 
 class serviceModel(models.Model):
     customerRefId = models.CharField(max_length=10)
-    attendTech = models.ForeignKey(techName, on_delete=CASCADE)
-    parts = models.ForeignKey(partsName, on_delete=CASCADE)
+    attendTech = models.ForeignKey(techName, on_delete=models.CASCADE)
+    parts = models.ForeignKey(partsName, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.attendTech)

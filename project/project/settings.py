@@ -131,7 +131,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 # Email Send..................
 # EMAIL_HOST = "smtp.gmail.com"
 # EMAIL_HOST_USER = "panjasourav03@gmail.com"

@@ -68,7 +68,11 @@ def customer(request):
         fm = customerDetailsForm(request.POST)
         if fm.is_valid():
             fm.save()
-            return redirect("/customer")
+            messages.info(request, "Successfully Submit")
+            return redirect("/")
+
+        else:
+            messages.info(request, "Something Went Wrong")
     return render(request, "customer.html")
 
 

@@ -1,4 +1,9 @@
-{% include "base.html" %} {% block content %}
+{% include "base.html" %} {% block content %} {% for m in messages %}
+<div class="alert alert-success text-center">
+  <strong>{{m}}</strong>
+</div>
+{% endfor %}
+
 <div class="container-fluid mt-2">
   <form method="POST" action="/customer">
     {% csrf_token %}
@@ -11,26 +16,66 @@
           <div class="card-body p-2">
             <div class="row">
               <div class="col">
-                <input id="name" name="name" type="text" class="form-control" placeholder="Name" />
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  class="form-control"
+                  placeholder="Name"
+                  required
+                />
               </div>
               <div class="col">
-                <input id="address" name="address" type="text" class="form-control" placeholder="Address" />
+                <input
+                  id="address"
+                  name="address"
+                  type="text"
+                  class="form-control"
+                  placeholder="Address"
+                  required
+                />
               </div>
             </div>
             <div class="row mt-2">
               <div class="col">
-                <input id="phoneno" name="phoneNo" type="text" class="form-control" placeholder="Phone number" />
+                <input
+                  id="phoneno"
+                  name="phoneNo"
+                  type="text"
+                  class="form-control"
+                  placeholder="Phone number"
+                  required
+                />
               </div>
               <div class="col">
-                <input id="email" name="email" type="text" class="form-control" placeholder="Email Id" />
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  class="form-control"
+                  placeholder="Email Id"
+                />
               </div>
             </div>
             <div class="row mt-2">
               <div class="col">
-                <input class="form-control" type="number" min="0" placeholder="No of Service" name="service">
+                <input
+                  class="form-control"
+                  type="number"
+                  min="0"
+                  placeholder="No of Service"
+                  name="service"
+                  required
+                />
               </div>
               <div class="col">
-                <input class="form-control" type="number" min="0" placeholder="Tenur/ No. of Year for EMI" name="emi">
+                <input
+                  class="form-control"
+                  type="number"
+                  min="0"
+                  placeholder="Tenur/ No. of Year for EMI"
+                  name="emi"
+                />
               </div>
             </div>
           </div>
@@ -44,45 +89,106 @@
           <div class="card-body p-2">
             <div class="row">
               <div class="col-sm-5">
-                <input id="modelNameOne" name="modelNameOne" type="text" class="form-control"
-                  placeholder="Model Name" />
+                <input
+                  id="modelNameOne"
+                  name="modelNameOne"
+                  type="text"
+                  class="form-control"
+                  placeholder="Model Name"
+                  required
+                />
               </div>
               <div class="col-sm-5">
-                <input id="modelNoOne" name="modelNoOne" type="text" class="form-control" placeholder="Model Number" />
+                <input
+                  id="modelNoOne"
+                  name="modelNoOne"
+                  type="text"
+                  class="form-control"
+                  placeholder="Model Number"
+                  required
+                />
               </div>
               <div class="col-sm-2">
-                <input id="quantityOne" name="quantityOne" type="text" class="form-control" placeholder="Quantity" />
+                <input
+                  id="quantityOne"
+                  name="quantityOne"
+                  type="text"
+                  class="form-control"
+                  placeholder="Quantity"
+                  required
+                />
               </div>
             </div>
             <div class="row mt-2">
               <div class="col-sm-5">
-                <input id="modelNameTwo" name="modelNameTwo" type="text" class="form-control"
-                  placeholder="Model Name" />
+                <input
+                  id="modelNameTwo"
+                  name="modelNameTwo"
+                  type="text"
+                  class="form-control"
+                  placeholder="Model Name"
+                />
               </div>
               <div class="col-sm-5">
-                <input id="modelNoTwo" name="modelNoTwo" type="text" class="form-control" placeholder="Model Number" />
+                <input
+                  id="modelNoTwo"
+                  name="modelNoTwo"
+                  type="text"
+                  class="form-control"
+                  placeholder="Model Number"
+                />
               </div>
               <div class="col-sm-2">
-                <input id="quantityTwo" name="quantityTwo" type="text" class="form-control" placeholder="Quantity" />
+                <input
+                  id="quantityTwo"
+                  name="quantityTwo"
+                  type="text"
+                  class="form-control"
+                  placeholder="Quantity"
+                />
               </div>
             </div>
             <div class="row mt-2">
               <div class="col">
-                <input id="date" name="purchaseDate" type="date" class="form-control" />
+                <input
+                  id="date"
+                  name="purchaseDate"
+                  type="date"
+                  class="form-control"
+                  required
+                />
               </div>
               <div class="col">
-                <input id="totalAmount" name="totalAmount" type="number" min="0" class="form-control"
-                  placeholder="Total Amount" />
+                <input
+                  id="totalAmount"
+                  name="totalAmount"
+                  type="number"
+                  min="0"
+                  class="form-control"
+                  placeholder="Total Amount"
+                  required
+                />
               </div>
               <div class="col">
-                <input id="advance" name="advanceAmount" type="number" min="0" class="form-control"
-                  placeholder="Advance" />
+                <input
+                  id="advance"
+                  name="advanceAmount"
+                  type="number"
+                  min="0"
+                  class="form-control"
+                  placeholder="Advance"
+                  required
+                />
               </div>
               <div class="col">
                 <!-- Hidden Value -->
-                <input type="hidden" name="dueAmount" class="dueAmount">
+                <input type="hidden" name="dueAmount" class="dueAmount" />
 
-                <button type="button" class="btn btn-dark w-100" onclick="result()">
+                <button
+                  type="button"
+                  class="btn btn-dark w-100"
+                  onclick="result()"
+                >
                   Go
                 </button>
               </div>
@@ -123,19 +229,39 @@
           </div>
           <ul class="list-group m-2">
             <li class="list-group-item d-flex justify-content-around">
-              <a class="col">Product Name 1 : <span class="cproductNameOne text-success"></span></a>
-              <a class="col">Product No. : <span class="cproductNoOne text-success"></span></a>
-              <a class="col">Quantity : <span class="cquantityOne text-success"></span></a>
+              <a class="col"
+                >Product Name 1 :
+                <span class="cproductNameOne text-success"></span
+              ></a>
+              <a class="col"
+                >Product No. : <span class="cproductNoOne text-success"></span
+              ></a>
+              <a class="col"
+                >Quantity : <span class="cquantityOne text-success"></span
+              ></a>
             </li>
             <li class="list-group-item d-flex justify-content-around">
-              <a class="col">Product Name 2 : <span class="cproductNameTwo text-success"></span></a>
-              <a class="col">Product No. : <span class="cproductNoTwo text-success"></span></a>
-              <a class="col">Quantity : <span class="cquantityTwo text-success"></span></a>
+              <a class="col"
+                >Product Name 2 :
+                <span class="cproductNameTwo text-success"></span
+              ></a>
+              <a class="col"
+                >Product No. : <span class="cproductNoTwo text-success"></span
+              ></a>
+              <a class="col"
+                >Quantity : <span class="cquantityTwo text-success"></span
+              ></a>
             </li>
             <li class="list-group-item d-flex justify-content-around">
-              <a class="col">Purchase Date : <span class="cpurchaseDate text-success"></span></a>
-              <a class="col">Amount : <span class="camount text-success"></span></a>
-              <a class="col">Advance : <span class="cadvance text-success"></span></a>
+              <a class="col"
+                >Purchase Date : <span class="cpurchaseDate text-success"></span
+              ></a>
+              <a class="col"
+                >Amount : <span class="camount text-success"></span
+              ></a>
+              <a class="col"
+                >Advance : <span class="cadvance text-success"></span
+              ></a>
               <a class="col">Due : <span class="cdue text-danger"></span></a>
             </li>
 
@@ -220,23 +346,20 @@
     // Due AMount Calculate
     var totalAmount = document.querySelector("#totalAmount").value;
     var advanceA = document.querySelector("#advance").value;
-    var dueamt = document.querySelector(".dueAmount").value = totalAmount - advanceA;
-
+    var dueamt = (document.querySelector(".dueAmount").value =
+      totalAmount - advanceA);
 
     // Due Amount Checking Funtion
 
     if (parseInt(totalAmount) < parseInt(advanceA)) {
       alert("Advance Amount Grater than Bill Amount");
       document.querySelector("#advance").value = 0;
-
-    }
-    else {
+    } else {
       var cdue = document.querySelector(".cdue");
       cdue.innerHTML = dueamt;
       camount.innerHTML = totalAmount;
       cadvance.innerHTML = advance;
     }
-
   };
 </script>
 {% endblock scripts %}
