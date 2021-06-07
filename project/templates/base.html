@@ -26,22 +26,25 @@
         <a class="nav-link text-light" href="/">Service Book</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="/customer"><i class="fa fa-user-friends"></i></a>
+        <a class="nav-link text-light" href="/customer"><i class="fa fa-user-friends" data-toggle="tooltip" data-placement="bottom" title="Add New Customer"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="/details"><i class="fa fa-book-open"></i></a>
+        <a class="nav-link text-light" href="/details"><i class="fa fa-book-open" data-toggle="tooltip" data-placement="bottom" title="Details Of Customer"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="/service"><i class="fas fa-tools"></i></a>
+        <a class="nav-link text-light" href="/service"><i class="fas fa-tools" data-toggle="tooltip" data-placement="bottom" title="Service"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="/"><i class="fa fa-money-bill-alt"> EMI</i></a>
+        <a class="nav-link text-light" href="/"><i class="fa fa-money-bill-alt" data-toggle="tooltip" data-placement="bottom" title="EMI"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="/"><i class="fa fa-wrench" data-toggle="tooltip" data-placement="bottom" title="AMC"></i></a>
       </li>
     </div>
     <div>
       <li class="nav-item">
         <a class="nav-link text-light" href="{% url 'logout' %}">Hello, Mr. {{request.user}} <i
-            class="fas fa-sign-out-alt"></i></a>
+            class="fas fa-sign-out-alt" data-toggle="tooltip" data-placement="bottom" title="Logout"></i></a>
       </li>
     </div>
   </ul>

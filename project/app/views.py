@@ -1,8 +1,8 @@
 from typing import Deque
 from django.db.models.aggregates import Aggregate, Sum
 from django.shortcuts import redirect, render
-from .models import customerDetails, paymentOnEmi, techName
-from .forms import customerDetailsForm, paymentOnEmiForm, techNameForm
+from .models import customerDetails, paymentOnEmi, serviceModel, techName, partsName
+from .forms import customerDetailsForm, paymentOnEmiForm, techNameForm, serviceModelForm, partsNameForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -118,4 +118,10 @@ def service(request):
 # For Technician Requirement...........................
 @login_required(login_url="/login")
 def technicianPage(request, id):
-    return render(request, "technician.html", {"id":id})
+    tc = serviceModelForm()
+    if request.method == "POST":
+        tc = serviceModelForm(request.POST)
+        if tc.is_valid():
+            tc.save()
+            return redirect("/service")
+    return render(request, "technician.html", {"id":id, "tc":tc})

@@ -1,23 +1,29 @@
 {% include "base.html" %} {% block content %}
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <td>Id</td>
-      <td>Ref No.</td>
-      <td>Pay Amt</td>
-      <td>Date</td>
-    </tr>
-  </thead>
-  <tbody>
-    {% for pd in pdd %}
-    <tr>
+<div class="container">
+  <table class="table table-hover mt-2">
+    <thead>
+      <tr class="bg-dark text-light">
+        <td>Id</td>
+        <td>Ref No.</td>
+        <td>Pay Amt</td>
+        <td>Date</td>
+        <td>Cash/ Cheque</td>
+        <td>Cheque No.</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pd in pdd %}
+      <tr>
         <td>{{pd.id}}</td>
-      <td>{{pd.refNo}}</td>
-      <td>{{pd.paidAmount}}</td>
-      <td>{{pd.paymentDate}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+        <td>{{pd.refNo}}</td>
+        <td>{{pd.paidAmount}}</td>
+        <td>{{pd.paymentDate}}</td>
+        <td>{{pd.cashCheque}}</td>
+        <td>{{pd.chequeNo}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

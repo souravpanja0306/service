@@ -27,15 +27,7 @@
             </div>
             <div class="row mt-2">
               <div class="col">
-                <div class="form-check m-2">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Option for EMI
-                  </label>
-                </div>
-              </div>
-              <div class="col">
-                <input class="form-control" type="number" min="0" placeholder="No of Service"  name="service">
+                <input class="form-control" type="number" min="0" placeholder="No of Service" name="service">
               </div>
               <div class="col">
                 <input class="form-control" type="number" min="0" placeholder="Tenur/ No. of Year for EMI" name="emi">
@@ -83,7 +75,8 @@
                   placeholder="Total Amount" />
               </div>
               <div class="col">
-                <input id="advance" name="advanceAmount" type="number" min="0" class="form-control" placeholder="Advance" />
+                <input id="advance" name="advanceAmount" type="number" min="0" class="form-control"
+                  placeholder="Advance" />
               </div>
               <div class="col">
                 <!-- Hidden Value -->
@@ -229,15 +222,15 @@
     var advanceA = document.querySelector("#advance").value;
     var dueamt = document.querySelector(".dueAmount").value = totalAmount - advanceA;
 
-    
+
     // Due Amount Checking Funtion
-    
-    if (parseInt(totalAmount) < parseInt(advanceA)){
+
+    if (parseInt(totalAmount) < parseInt(advanceA)) {
       alert("Advance Amount Grater than Bill Amount");
       document.querySelector("#advance").value = 0;
-    
+
     }
-    else{
+    else {
       var cdue = document.querySelector(".cdue");
       cdue.innerHTML = dueamt;
       camount.innerHTML = totalAmount;
