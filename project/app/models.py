@@ -39,6 +39,8 @@ class paymentOnEmi(models.Model):
     def __str__(self):
         return str(self.refNo)
 
+
+# Technician Registrations...............................................
 class techName(models.Model):
     technicianName = models.CharField(max_length=100)
     disignation = models.CharField(max_length=50)
@@ -47,6 +49,7 @@ class techName(models.Model):
     def __str__(self):
         return self.technicianName
 
+# For Parts Registrations................................................
 class partsName(models.Model):
     reqPartName = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
