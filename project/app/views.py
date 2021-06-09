@@ -79,8 +79,14 @@ def customer(request):
 # Views Customer Detais, Payment Details and Etc..................
 @login_required(login_url="/login")
 def details(request):
-    fmm = customerDetails.objects.all()
+    fmm = customerDetails.objects.all() #fmm is normal variable
     return render(request, "details.html", {"fmm": fmm})
+
+
+def iddetails(request, id):
+    ghh = customerDetails.objects.get(pk=id)
+    phh = paymentOnEmi.objects.all()
+    return render(request, "iddetails.html", {'ghh':ghh, 'phh':phh, 'id':id})
 
 # For Payment Page................................................
 

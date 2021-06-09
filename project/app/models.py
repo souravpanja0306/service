@@ -19,20 +19,26 @@ class customerDetails(models.Model):
     quantityTwo = models.CharField(max_length=2, null=True, blank=True)
     modelNoTwo = models.CharField(max_length=100, blank=True)
     purchaseDate = models.DateField(auto_now=False, auto_now_add=False)
-    totalAmount = models.DecimalField(max_digits=10, decimal_places=2)
-    advanceAmount = models.DecimalField(max_digits=10, decimal_places=2)
-    dueAmount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-
+    totalAmount = models.IntegerField()
+    advanceAmount = models.IntegerField()
+    dueAmount = models.IntegerField(null=True)
 
     def __str__(self):
         return self.name
 
 
+# New.......................................................
+    def amount_due(self):
+        payable = self.totalAmount
+        paid = self.advanceAmount
+        return payable - paid
+        
+# ..............................................................
+
 class paymentOnEmi(models.Model):
     refNo = models.IntegerField()
-    paidAmount = models.DecimalField(max_digits=10, decimal_places=2)
+    paidAmount = models.IntegerField()
     paymentDate = models.DateField(auto_now=False, auto_now_add=False)
-
     cashCheque = models.CharField(max_length=100, null=True)
     chequeNo = models.CharField(max_length=10, null=True, blank=True)
 

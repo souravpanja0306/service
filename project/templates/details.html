@@ -23,7 +23,7 @@
           {% for f in fmm %}
           <tr>
             <td>{{f.custimerId}}</td>
-            <td>{{f.name}}</td>
+            <td> <a href="{% url 'iddetails' f.custimerId %}">{{f.name}}</a> </td>
             <td>{{f.address}}</td>
             <td>{{f.email}}</td>
             <td>{{f.phoneNo}}</td>
@@ -35,7 +35,7 @@
             </td>
             
             <td>
-              <h5 class="text-danger text-right">{{f.dueAmount}}</h5>
+              <h5 class="text-danger text-right">{{f.amount_due}}</h5>
             </td>
           
             {% if f.totalAmount == f.advanceAmount %}

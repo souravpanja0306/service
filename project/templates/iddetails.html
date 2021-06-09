@@ -1,0 +1,58 @@
+{% include "base.html" %} {% block content %}
+
+<div class="container-fluid">
+    <div class="bg-dark mt-2">
+        <p class="nav-link text-light text-center">Full details</p>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <ul class="list-group">
+                <li class="list-group-item bg-dark text-light text-center"><strong>Customer Details</strong></li>
+                <li class="list-group-item">Customer Id : <strong> {{ghh.custimerId}}</strong></li>
+                <li class="list-group-item">Customer name :<strong class="text-danger"> {{ghh.name}}</strong></li>
+                <li class="list-group-item">Phone No : <strong> {{ghh.phoneNo}}</strong></li>
+                <li class="list-group-item">Email Id : <strong> {{ghh.email}}</strong></li>
+                <li class="list-group-item">Address : <strong> {{ghh.address}}</strong></li>
+            </ul>
+        </div>
+        <div class="col-6">
+            <ul class="list-group">
+                <li class="list-group-item bg-dark text-light text-center"><strong>Product Details Details</strong></li>
+                <li class="list-group-item">Product 1 : <strong> {{ghh.modelNameOne}}</strong> --
+                    <strong>{{ghh.modelNoOne}}</strong></li>
+                <li class="list-group-item">Quantity : <strong> {{ghh.quantityOne}}</strong></li>
+                <li class="list-group-item">Product 2 : <strong> {{ghh.modelNameTwo}}</strong> --
+                    <strong>{{ghh.modelNoTwo}}</strong></li>
+                <li class="list-group-item">Quantity : <strong> {{ghh.quantityTwo}}</strong></li>
+                <li class="list-group-item">Purcase Date : <strong> {{ghh.purchaseDate}}</strong></li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row mt-2">
+        <div class="col">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Sl No.</th>
+                        <th>Date</th>
+                        <th>Creadit</th>
+                        <th>Bill Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{counter}}</td>
+                        <td>{{ghh.purchaseDate}}</td>
+                        <td></td>
+                        <td>{{ghh.totalAmount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{{phh}}
+
+{% endblock %}
