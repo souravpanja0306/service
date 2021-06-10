@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.base import Model
 from django.db.models.deletion import CASCADE
+from django.db.models.aggregates import Aggregate, Sum
 
 class customerDetails(models.Model):
     custimerId = models.AutoField(primary_key=True)
@@ -26,15 +27,12 @@ class customerDetails(models.Model):
     def __str__(self):
         return self.name
 
-
-# New.......................................................
     def amount_due(self):
         payable = self.totalAmount
         paid = self.advanceAmount
         return payable - paid
         
-# ..............................................................
-
+# Payment Receipt........................................................
 class paymentOnEmi(models.Model):
     refNo = models.IntegerField()
     paidAmount = models.IntegerField()

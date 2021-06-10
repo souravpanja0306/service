@@ -7,7 +7,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.db.models import Sum
 
 # This is the Home page & DashBoard Page...................
 
@@ -85,21 +84,20 @@ def details(request):
 
 def iddetails(request, id):
     ghh = customerDetails.objects.get(pk=id)
-    phh = paymentOnEmi.objects.all()
+    phh = paymentOnEmi.objects.filter(refNo=id)
     return render(request, "iddetails.html", {'ghh':ghh, 'phh':phh, 'id':id})
 
 # For Payment Page................................................
-
-
 @login_required(login_url="/login")
 def payment(request, id):
+    ghh = customerDetails.objects.get(pk=id)
     ps = paymentOnEmiForm()
     if request.method == "POST":
         ps = paymentOnEmiForm(request.POST)
         if ps.is_valid():
             ps.save()
             return redirect("/details")
-    return render(request, "payment.html", {"id": id})
+    return render(request, "payment.html", {"ghh":ghh, "id": id})
 
 
 # Payment Data Page.................................................

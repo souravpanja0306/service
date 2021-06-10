@@ -1,4 +1,6 @@
-{% include "base.html" %} {% block content %}
+{% include "base.html" %} 
+{% load humanize %}
+{% block content %}
 
 <div class="container-fluid">
     <div class="bg-dark mt-2">
@@ -6,53 +8,101 @@
     </div>
     <div class="row">
         <div class="col-6">
-            <ul class="list-group">
-                <li class="list-group-item bg-dark text-light text-center"><strong>Customer Details</strong></li>
-                <li class="list-group-item">Customer Id : <strong> {{ghh.custimerId}}</strong></li>
-                <li class="list-group-item">Customer name :<strong class="text-danger"> {{ghh.name}}</strong></li>
-                <li class="list-group-item">Phone No : <strong> {{ghh.phoneNo}}</strong></li>
-                <li class="list-group-item">Email Id : <strong> {{ghh.email}}</strong></li>
-                <li class="list-group-item">Address : <strong> {{ghh.address}}</strong></li>
-            </ul>
+            <table class="table table-bordered">
+                <ul class="list-group">
+                    <li class="list-group-item bg-dark text-light text-center"><strong>Customer Details</strong></li>
+                </ul>
+                <tbody>
+                    <tr>
+                        <td>Customer Id : </td>
+                        <td class="text-danger"><strong>{{ghh.custimerId}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Customer name : </td>
+                        <td class="text-success"><strong>{{ghh.name | upper}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Phone No : </td>
+                        <td>{{ghh.phoneNo}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email Id : </td>
+                        <td>{{ghh.email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Address : </td>
+                        <td>{{ghh.address}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col-6">
             <ul class="list-group">
                 <li class="list-group-item bg-dark text-light text-center"><strong>Product Details Details</strong></li>
-                <li class="list-group-item">Product 1 : <strong> {{ghh.modelNameOne}}</strong> --
-                    <strong>{{ghh.modelNoOne}}</strong></li>
-                <li class="list-group-item">Quantity : <strong> {{ghh.quantityOne}}</strong></li>
-                <li class="list-group-item">Product 2 : <strong> {{ghh.modelNameTwo}}</strong> --
-                    <strong>{{ghh.modelNoTwo}}</strong></li>
-                <li class="list-group-item">Quantity : <strong> {{ghh.quantityTwo}}</strong></li>
-                <li class="list-group-item">Purcase Date : <strong> {{ghh.purchaseDate}}</strong></li>
             </ul>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Product 1 : </td>
+                        <td><strong>{{ghh.modelNameOne}} -- {{ghh.modelNoOne}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Quantity : </td>
+                        <td><strong>{{ghh.quantityOne}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Product 2 : </td>
+                        <td><strong>{{ghh.modelNameTwo}} -- {{ghh.modelNoTwo}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Quantity : </td>
+                        <td>{{ghh.quantityTwo}}</td>
+                    </tr>
+                    <tr>
+                        <td>Purcase Date : </td>
+                        <td class="text-success"><strong>{{ghh.purchaseDate}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <hr>
-    <div class="row mt-2">
+    <div class="bg-dark mt-2">
+        <p class="nav-link text-center text-light">Payment Details</p>
+    </div>
+    <div class="row">
         <div class="col">
-            <table class="table table-hover">
+            <table class="table table-bordered">
                 <thead>
-                    <tr>
+                    <tr class="bg-dark text-light text-center">
                         <th>Sl No.</th>
                         <th>Date</th>
+                        <th>Details</th>
                         <th>Creadit</th>
                         <th>Bill Amount</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{counter}}</td>
+                        <td></td>
                         <td>{{ghh.purchaseDate}}</td>
                         <td></td>
-                        <td>{{ghh.totalAmount}}</td>
+                        <td class="text-right text-success"><strong>{{ghh.advanceAmount | intcomma}}</strong></td>
+                        <td class="text-right text-success"><strong>{{ghh.totalAmount | intcomma}}</strong></td>
                     </tr>
+                    {% for p in phh %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{p.paymentDate}} -- {{p.paymentDate | naturalday}}</td>
+                        <td>{{p.cashCheque}} -- {{p.chequeNo}}</td>
+                        <td class="text-right">{{p.paidAmount | intcomma}}</td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
-
         </div>
     </div>
 </div>
-{{phh}}
 
 {% endblock %}

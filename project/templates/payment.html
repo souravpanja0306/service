@@ -1,4 +1,5 @@
 {% include "base.html" %}
+{% load humanize %}
 {% block content %}
 <div class="container-fluid">
     <div class="bg-dark mt-2">
@@ -20,15 +21,17 @@
                                 <input class="form-control m-2" type="number" name="refNo" value="{{id}}" readonly>
 
                                 <input class="form-control m-2" type="number" min="0" name="paidAmount"
-                                    placeholder="Payment Amount" required>
+                                    placeholder="Payment Amount" value="{{ghh.amount_due}}" required>
 
                                 <input class="form-control m-2" type="date" name="paymentDate" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col d-flex">
-                                <input class="form-control m-2" name="cashCheque" type="text" placeholder="Cash/Cheque" required>
-                                <input class="form-control m-2" name="chequeNo" type="number" min="0" placeholder="Cheque No.">
+                                <input class="form-control m-2" name="cashCheque" type="text" placeholder="Cash/Cheque"
+                                    required>
+                                <input class="form-control m-2" name="chequeNo" type="number" min="0"
+                                    placeholder="Cheque No.">
                             </div>
                         </div>
                         <button type="submit" class="m-2 btn btn-dark w-100">Submit</button>
@@ -42,14 +45,34 @@
         </div>
         <div class="col-4">
             <div class="card">
-                <div class="card-header bg-dark text-light">
-                    Hello
+                <div class="card-header bg-dark text-light text-center">
+                    Details
                 </div>
                 <div class="card-body">
-                    Hello
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="text-right">Customer Id : </td>
+                                <td class="text-danger">{{ghh.custimerId}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Customer Name :</td>
+                                <td class="text-success"><strong>{{ghh.name | upper}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Bill Amount : </td>
+                                <td>{{ghh.totalAmount | intcomma}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Due Amount : </td>
+                                <td class="text-danger"><strong>{{ghh.amount_due | intcomma}}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock content %}
