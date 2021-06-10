@@ -8,9 +8,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+# For Page of Profile.......................................
+def profile(request):
+    return render(request, "profile.html")
+
+
 # This is the Home page & DashBoard Page...................
-
-
 @login_required(login_url="/login")
 def home(request):
     tamt = customerDetails.objects.all().aggregate(
