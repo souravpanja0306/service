@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 # For Page of Profile.......................................
+@login_required(login_url="/login")
 def profile(request):
     return render(request, "profile.html")
 
@@ -84,7 +85,7 @@ def details(request):
     fmm = customerDetails.objects.all() #fmm is normal variable
     return render(request, "details.html", {"fmm": fmm})
 
-
+@login_required(login_url="/login")
 def iddetails(request, id):
     ghh = customerDetails.objects.get(pk=id)
     phh = paymentOnEmi.objects.filter(refNo=id)
