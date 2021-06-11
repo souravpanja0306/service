@@ -19,5 +19,7 @@ urlpatterns = [
 
     path('profile/', views.profile, name="profile"),
 
+    path('technician_reg/', views.techreg, name="technician_reg")
+
 
 ]

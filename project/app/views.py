@@ -137,3 +137,12 @@ def technicianPage(request, id):
             tc.save()
             return redirect("/service")
     return render(request, "technician.html", {"id":id, "tc":tc})
+
+def techreg(request):
+    tech = techNameForm()
+    if request.method == "POST":
+        tech = techNameForm(request.POST)
+        if tech.is_valid():
+            tech.save()
+            return redirect("/profile")
+    return render(request, "techReg.html")
