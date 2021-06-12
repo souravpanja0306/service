@@ -31,6 +31,14 @@ class customerDetails(models.Model):
         payable = self.totalAmount
         paid = self.advanceAmount
         return payable - paid
+    
+    def totalAmt(self, id):
+        items = paymentOnEmi.objects.filter(refNo=id)
+        total = 0
+        for item in items:
+            total += item.paidAmount
+        return total
+
         
 # Payment Receipt........................................................
 class paymentOnEmi(models.Model):
