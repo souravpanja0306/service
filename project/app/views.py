@@ -17,10 +17,8 @@ def profile(request):
 # This is the Home page & DashBoard Page...................
 @login_required(login_url="/login")
 def home(request):
-    tamt = customerDetails.objects.all().aggregate(
-        sum=Sum('totalAmount'))['sum']
-    tamt2 = customerDetails.objects.all().aggregate(
-        sum2=Sum('advanceAmount'))['sum2']
+    tamt = customerDetails.objects.all().aggregate(sum=Sum('totalAmount'))['sum']
+    tamt2 = customerDetails.objects.all().aggregate(sum2=Sum('advanceAmount'))['sum2']
     tamt3 = (tamt - tamt2)
     return render(request, "home.html", {"tamt": tamt, "tamt2": tamt2, "tamt3": tamt3})
 

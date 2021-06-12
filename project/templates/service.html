@@ -15,21 +15,19 @@
                 <th>2nd Ser.</th>
                 <th>3rd Ser.</th>
                 <th>4th Ser.</th>
-                <th>5th Ser.</th>
-                <th>6th Ser.</th>
+
             </tr>
         </thead>
         
         <tbody>
             {% for dt in dtt %}
             <tr>
-                <td>{{dt.name}}</td>
+                <td>{{dt.name | upper}}</td>
                 <td>{{dt.phoneNo}}</td>
                 <td>{{dt.purchaseDate}}</td>
                 <td>{{dt.service}}</td>
                 <td><a href="{% url 'technicianPage' dt.custimerId %}" class="text-success">{{ dt.service_Calculation}}</a></td>
-                <td></td>
-                <td></td>
+
                 <td></td>
                 <td></td>
                 <td></td>
@@ -47,8 +45,6 @@
                 <th>2nd Service</th>
                 <th>3rd Service</th>
                 <th>4th Service</th>
-                <th>5th Service</th>
-                <th>6th Service</th>
             </tr>
         </tfoot>
     </table>

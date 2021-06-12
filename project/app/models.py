@@ -11,7 +11,7 @@ class customerDetails(models.Model):
     phoneNo = models.CharField(max_length=100, unique=True)
     email = models.EmailField(null=True)
 
-    service = models.CharField(max_length=10, null=True, blank=True)
+    service = models.IntegerField(null=True, blank=True)
     emi = models.CharField(max_length=10, null=True, blank=True)
 
     modelNameOne = models.CharField(max_length=100)
@@ -46,11 +46,12 @@ class customerDetails(models.Model):
         return total
 
     def service_Calculation(self):
-        if self.service == "4":
+        if self.service == 4:
             td = timedelta(days = 73)
-            first_ser = self.purchaseDate 
+            first_ser = self.purchaseDate
             return first_ser + td
-        elif self.service == "3":
+
+        elif self.service == 3:
             tdd = timedelta(days = 91)
             first_service = self.purchaseDate
             return first_service  + tdd
