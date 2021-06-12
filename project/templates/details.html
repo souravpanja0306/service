@@ -33,15 +33,15 @@
               <h5 class="text-info text-right">{{f.totalAmount | intcomma}}</h5>
             </td>
             <td>
-              <h5 class="text-success text-right">{{f.totalAmt | intcomma}}</h5>
+              <h5 class="text-success text-right">{{f.total_paid_amount | intcomma}}</h5>
             </td>
             
             <td>
               <h5 class="text-danger text-right">{{f.amount_due | intcomma}}</h5>
             </td>
           
-            {% if f.totalAmount == f.advanceAmount %}
-              <td><a href="{% url 'paymentPage' f.custimerId %}" class="btn btn-danger btn-sm w-100 disabled" >Why Pay?</a></td>
+            {% if f.totalAmount == f.total_paid_amount %}
+              <td><a href="{% url 'paymentPage' f.custimerId %}" class="btn btn-danger btn-sm w-100 disabled" >Paid</a></td>
             {% else %}
               <td><a href="{% url 'paymentPage' f.custimerId %}" class="btn btn-dark btn-sm w-100">Pay</a></td>
             {% endif %}

@@ -44,7 +44,7 @@
                 <tbody>
                     <tr>
                         <td>Product 1 : </td>
-                        <td><strong>{{ghh.modelNameOne}} -- {{ghh.modelNoOne}}</strong></td>
+                        <td><strong>{{ghh.modelNameOne | upper}} -- {{ghh.modelNoOne}}</strong></td>
                     </tr>
                     <tr>
                         <td>Quantity : </td>
@@ -77,8 +77,8 @@
                     <tr class="bg-dark text-light text-center">
                         <th>Sl No.</th>
                         <th>Date</th>
-                        <th>Details</th>
-                        <th>Creadit</th>
+                        <th>Details (Cash/ Cheque)</th>
+                        <th>Amount Received</th>
                         <th>Bill Amount</th>
                     </tr>
                 </thead>
@@ -100,6 +100,15 @@
                     </tr>
                     {% endfor %}
                 </tbody>
+                <tfoot>
+                    <tr class="bg-dark text-light text-center">
+                        <th></th>
+                        <th></th>
+                        <th class="text-right">Total</th>
+                        <th class="text-right">{{ghh.total_paid_amount | intcomma}}</th>
+                        <th class="text-right">{{ghh.totalAmount | intcomma}}</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

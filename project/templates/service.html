@@ -10,13 +10,13 @@
                 <th>Name</th>
                 <th>Purchase Date</th>
                 <th>Mobile No.</th>
-                <th>No. of Service</th>
-                <th>1st Service</th>
-                <th>2nd Service</th>
-                <th>3rd Service</th>
-                <th>4th Service</th>
-                <th>5th Service</th>
-                <th>6th Service</th>
+                <th>No. of Ser.</th>
+                <th>1st Ser.</th>
+                <th>2nd Ser.</th>
+                <th>3rd Ser.</th>
+                <th>4th Ser.</th>
+                <th>5th Ser.</th>
+                <th>6th Ser.</th>
             </tr>
         </thead>
         
@@ -27,7 +27,7 @@
                 <td>{{dt.phoneNo}}</td>
                 <td>{{dt.purchaseDate}}</td>
                 <td>{{dt.service}}</td>
-                <td><a href="{% url 'technicianPage' dt.custimerId %}" class="text-success">03/05/2021</a></td>
+                <td><a href="{% url 'technicianPage' dt.custimerId %}" class="text-success">{{ dt.service_Calculation}}</a></td>
                 <td></td>
                 <td></td>
                 <td></td>
