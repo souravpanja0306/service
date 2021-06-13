@@ -22,9 +22,8 @@ def home(request):
     tamt3 = (tamt - tamt2)
     return render(request, "home.html", {"tamt": tamt, "tamt2": tamt2, "tamt3": tamt3})
 
+
 # This The Login Page...........
-
-
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect("/customer")
@@ -71,7 +70,6 @@ def customer(request):
             fm.save()
             messages.info(request, "Successfully Submit")
             return redirect("/")
-
         else:
             messages.info(request, "Something Went Wrong")
     return render(request, "customer.html")
@@ -83,11 +81,13 @@ def details(request):
     fmm = customerDetails.objects.all() #fmm is normal variable
     return render(request, "details.html", {"fmm": fmm})
 
+
 @login_required(login_url="/login")
 def iddetails(request, id):
     ghh = customerDetails.objects.get(pk=id)
     phh = paymentOnEmi.objects.filter(refNo=id)
     return render(request, "iddetails.html", {'ghh':ghh, 'phh':phh, 'id':id})
+
 
 # For Payment Page................................................
 @login_required(login_url="/login")
@@ -104,7 +104,7 @@ def payment(request, id):
 
 # Payment Data Page.................................................
 @login_required(login_url="/login")
-def pdata(request):
+def payment_data(request):
     pdd = paymentOnEmi.objects.all()
     return render(request, "pdata.html", {"pdd":pdd})
 
@@ -117,11 +117,11 @@ def logoutuser(request):
     return redirect("/login")
 
 
-
 # For Service Requirement...........................
 @login_required(login_url="/login")
 def service(request):
     dtt = customerDetails.objects.all()
+    # print(dtt)
     return render(request, "service.html",{"dtt":dtt})
 
 
@@ -136,11 +136,34 @@ def technicianPage(request, id):
             return redirect("/service")
     return render(request, "technician.html", {"id":id, "tc":tc})
 
+
+# Technician Registrations............................................................
+@login_required(login_url="/login")
 def techreg(request):
-    tech = techNameForm()
     if request.method == "POST":
         tech = techNameForm(request.POST)
         if tech.is_valid():
             tech.save()
+            return redirect("/profile/technician_reg")
+    else:
+        tech = techNameForm()
+        tva = techName.objects.all()
+    return render(request, "technician_reg.html",{"tva": tva})
+
+
+# Technician Delete............................................................
+@login_required(login_url="/login")
+def tech_del(request, id):
+    # if request.method == "POST":
+        tid = techName.objects.get(pk=id)
+        tid.delete()
+        return redirect("/profile/technician_reg")
+
+def partsreg(request):
+    pts = partsNameForm()
+    if request.method == "POST":
+        pts = partsNameForm(request.POST)
+        if pts.is_valid():
+            pts.save()
             return redirect("/profile")
-    return render(request, "techReg.html")
+    return render(request, "parts_reg.html")

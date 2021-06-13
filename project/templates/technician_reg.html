@@ -1,0 +1,89 @@
+{% include "profilebase.html" %} {% block main %}
+<div class="container-fluid">
+  <div class="bg-dark mt-1">
+    <p class="nav-link text-light text-center">Technician Registrations</p>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header bg-dark text-light text-center">
+          Add New Technicians
+        </div>
+        <div class="card-body">
+          <form action="" method="post">
+            {% csrf_token %}
+            <input
+              class="form-control mt-2"
+              type="text"
+              name="technicianName"
+              placeholder="Technician Name"
+              required
+            />
+            <input
+              class="form-control mt-2"
+              type="text"
+              name="disignation"
+              placeholder="Technician Designation"
+              required
+            />
+            <input
+              class="form-control mt-2"
+              type="number"
+              name="contactNo"
+              placeholder="Technician Contact No."
+              required
+            />
+            <button class="btn btn-dark btn-sm mt-2" type="submit">Save</button>
+          </form>
+        </div>
+        <div class="card-footer bg-dark text-light">Note : Check Carefully</div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header bg-dark text-light text-center">Details</div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead class="bg-dark text-light text-center">
+              <tr>
+                <td>S.N.</td>
+                <td>Name</td>
+                <td>Designation</td>
+                <td>Contact No.</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            {% for tv in tva %}
+            <tbody>
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{tv.technicianName}}</td>
+                <td>{{tv.disignation}}</td>
+                <td>{{tv.contactNo}}</td>
+                <td class="text-center">
+                  <a class="btn btn-dark m-1" href=""><i class="fas fa-edit"></i></a>
+                  <a class="btn btn-danger m-1" href="{% url 'tech_del' tv.id %}"><i class="fa fa-trash-alt"></i></a>
+                </td>
+              </tr>
+            </tbody>
+            {% endfor %}
+            <tfoot class="bg-dark text-light text-center">
+              <tr>
+                <td>S.N.</td>
+                <td>Name</td>
+                <td>Designation</td>
+                <td>Contact No.</td>
+                <td>Action</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- <div class="card-footer bg-dark text-light">
+          Note : You Can Delete & Edit Data
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
