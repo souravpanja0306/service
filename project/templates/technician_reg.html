@@ -62,11 +62,51 @@
                 <td>{{tv.disignation}}</td>
                 <td>{{tv.contactNo}}</td>
                 <td class="text-center">
-                  <a class="btn btn-dark m-1" href=""><i class="fas fa-edit"></i></a>
-                  <a class="btn btn-danger m-1" href="{% url 'tech_del' tv.id %}"><i class="fa fa-trash-alt"></i></a>
+                  <a class="btn btn-dark m-1" href=""
+                    ><i class="fas fa-edit"></i
+                  ></a>
+                  <a
+                    class="btn btn-danger m-1"
+                    data-bs-toggle="modal"
+                    data-bs-target="#techRegModal"
+                    ><i class="fa fa-trash-alt"></i>
+                  </a>
                 </td>
               </tr>
             </tbody>
+            <!-------------------------------------------------- Modal ------------------------------------------------->
+            <div
+              class="modal fade"
+              id="techRegModal"
+              tabindex="-1"
+              aria-labelledby="techRegModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="techRegModalLabel">
+                      Delete This Item ?
+                    </h5>
+                  </div>
+                  <div class="modal-body">Are you sure, You want delete this?</div>
+                  <div class="modal-footer">
+                    <a
+                      class="btn btn-danger m-1"
+                      href="{% url 'tech_del' tv.id %}"
+                      ><i class="far fa-check-circle"></i></a>
+                    <a
+                      type="button"
+                      class="btn btn-dark"
+                      data-bs-dismiss="modal"
+                    >
+                    <i class="far fa-times-circle"></i>
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-------------------------------------------------- Modal ------------------------------------------------->
             {% endfor %}
             <tfoot class="bg-dark text-light text-center">
               <tr>
@@ -86,4 +126,5 @@
     </div>
   </div>
 </div>
+
 {% endblock %}

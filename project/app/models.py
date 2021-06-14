@@ -79,7 +79,7 @@ class techName(models.Model):
 # For Parts Registrations................................................
 class partsName(models.Model):
     reqPartName = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.IntegerField()
 
     def __str__(self):
         return self.reqPartName

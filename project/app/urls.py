@@ -23,11 +23,14 @@ urlpatterns = [
 
 # Under Profile Section........................................
     path('profile/', views.profile, name="profile"),
+
     path('profile/technician_reg/', views.techreg, name="technician_reg"),
     path('<int:id>/', views.tech_del, name="tech_del"),
 
 
-    path('profile/parts_reg', views.partsreg, name='partsreg'),
+    path('profile/parts_reg/', views.partsreg, name='partsreg'),
+    path('<int:id>/', views.parts_del, name='parts_del'),
+
 
 
 ]
