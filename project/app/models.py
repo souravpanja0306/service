@@ -55,7 +55,11 @@ class customerDetails(models.Model):
             tdd = timedelta(days = 91)
             first_service = self.purchaseDate
             return first_service  + tdd
-            
+    def one_year_from_purchase_date(self):
+        years = timedelta(days = 364)
+        return self.purchaseDate + years
+
+
 # Payment Receipt........................................................
 class paymentOnEmi(models.Model):
     refNo = models.IntegerField()

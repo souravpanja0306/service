@@ -16,6 +16,14 @@ def profile(request):
     return render(request, "profile.html")
 
 
+def amc(request):
+    return render(request, "amc.html")
+
+
+def emi(request):
+    return render(request, "emi.html")
+
+
 # This is the Home page & DashBoard Page...................
 @login_required(login_url="/login")
 def home(request):
@@ -137,7 +145,7 @@ def technicianPage(request, id):
         tc = serviceModelForm(request.POST)
         if tc.is_valid():
             tc.save()
-            return redirect("/service")
+            return redirect("/customer/service")
     return render(request, "technician.html", {"id": id, "tc": tc})
 
 
@@ -163,6 +171,8 @@ def tech_del(request, id):
     return redirect("/profile/technician_reg")
 
 # Parts Name Registrations.....................................................
+
+
 @login_required(login_url="/login")
 def partsreg(request):
     if request.method == "POST":
@@ -182,4 +192,3 @@ def parts_del(request, id):
     ptd = partsName.objects.get(pk=id)
     ptd.delete()
     return redirect("/profile/parts_reg")
-

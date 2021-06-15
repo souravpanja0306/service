@@ -19,17 +19,21 @@ urlpatterns = [
     
     path('payment/<int:id>', views.payment, name="paymentPage"),
     path('payment_data', views.payment_data, name="payment_data"),
+
     path('customer/service', views.service, name="service"),
+
+    path('amc/', views.amc, name="amc"),
+    path('emi/', views.emi, name="emi"),
 
 # Under Profile Section........................................
     path('profile/', views.profile, name="profile"),
 
     path('profile/technician_reg/', views.techreg, name="technician_reg"),
-    path('<int:id>/', views.tech_del, name="tech_del"),
+    path('technician_reg/<int:id>/', views.tech_del, name="tech_del"),
 
 
     path('profile/parts_reg/', views.partsreg, name='partsreg'),
-    path('<int:id>/', views.parts_del, name='parts_del'),
+    path('parts_reg/<int:id>/', views.parts_del, name='parts_del'),
 
 
 
