@@ -1,4 +1,4 @@
-{% include "base.html" %} {% block content %}
+{% include "main/base.html" %} {% block content %}
 <div class="container-fluid">
   <div class="bg-dark mt-1">
     <p class="nav-link text-light text-center">Technician and Parts</p>
@@ -11,11 +11,18 @@
         <div class="card-body">
           <form action="" method="POST">
             {% csrf_token %}
-            <input type="text" class="form-control" name="customerRefId" value="{{id}}" readonly />
-            {{tc.attendTech}}
-            {{tc.parts}}
-            
-            <button type="submit" class="btn btn-dark btn-sm mt-2">Submit</button>
+            <input
+              type="text"
+              class="form-control"
+              name="customerRefId"
+              value="{{id}}"
+              readonly
+            />
+            {{tc.attendTech}} {{tc.parts}}
+
+            <button type="submit" class="btn btn-dark btn-sm mt-2">
+              Submit
+            </button>
           </form>
         </div>
       </div>

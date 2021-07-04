@@ -1,14 +1,14 @@
-{% include "profilebase.html" %} {% block main %}
+{% include "profile/profilebase.html" %} {% load humanize %} {% block main %}
 <div class="container-fluid">
   <div class="bg-dark mt-1">
-    <p class="nav-link text-light text-center">Technician Registrations</p>
+    <p class="nav-link text-light text-center">Parts Registrations</p>
   </div>
 
   <div class="row">
     <div class="col-6">
       <div class="card">
         <div class="card-header bg-dark text-light text-center">
-          Add New Technicians
+          Add New Parts
         </div>
         <div class="card-body">
           <form action="" method="post">
@@ -16,25 +16,18 @@
             <input
               class="form-control mt-2"
               type="text"
-              name="technicianName"
-              placeholder="Technician Name"
-              required
-            />
-            <input
-              class="form-control mt-2"
-              type="text"
-              name="disignation"
-              placeholder="Technician Designation"
+              name="reqPartName"
+              placeholder="Parts Name"
               required
             />
             <input
               class="form-control mt-2"
               type="number"
-              name="contactNo"
-              placeholder="Technician Contact No."
+              name="price"
+              placeholder="Price"
               required
             />
-            <button class="btn btn-dark btn-sm mt-2" type="submit">Save</button>
+            <button class="btn btn-dark w-100 mt-2" type="submit">Save</button>
           </form>
         </div>
         <div class="card-footer bg-dark text-light">Note : Check Carefully</div>
@@ -47,20 +40,18 @@
           <table class="table table-bordered">
             <thead class="bg-dark text-light text-center">
               <tr>
-                <td>S.N.</td>
-                <td>Name</td>
-                <td>Designation</td>
-                <td>Contact No.</td>
+                <td>Sl. No.</td>
+                <td>Parts Name</td>
+                <td>Price</td>
                 <td>Action</td>
               </tr>
             </thead>
-            {% for tv in tva %}
+            {% for p in prt %}
             <tbody>
-              <tr>
+              <tr class="">
                 <td>{{forloop.counter}}</td>
-                <td>{{tv.technicianName}}</td>
-                <td>{{tv.disignation}}</td>
-                <td>{{tv.contactNo}}</td>
+                <td>{{p.reqPartName | upper}}</td>
+                <td class="text-end">{{p.price | intcomma}}</td>
                 <td class="text-center">
                   <a class="btn btn-dark m-1" href=""
                     ><i class="fas fa-edit"></i
@@ -68,7 +59,7 @@
                   <a
                     class="btn btn-danger m-1"
                     data-bs-toggle="modal"
-                    data-bs-target="#techRegModal"
+                    data-bs-target="#partsRegModal"
                     ><i class="fa fa-trash-alt"></i>
                   </a>
                 </td>
@@ -77,31 +68,34 @@
             <!-------------------------------------------------- Modal ------------------------------------------------->
             <div
               class="modal fade"
-              id="techRegModal"
+              id="partsRegModal"
               tabindex="-1"
-              aria-labelledby="techRegModalLabel"
+              aria-labelledby="partsRegModalLabel"
               aria-hidden="true"
             >
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="techRegModalLabel">
+                    <h5 class="modal-title" id="partsRegModalLabel">
                       Delete This Item ?
                     </h5>
                   </div>
-                  <div class="modal-body">Are you sure, You want delete this?</div>
+                  <div class="modal-body">
+                    Are you sure, You want delete this?
+                  </div>
                   <div class="modal-footer">
                     <a
                       class="btn btn-danger m-1"
-                      href="{% url 'tech_del' tv.id %}"
-                      ><i class="far fa-check-circle"></i></a>
+                      href="{% url 'parts_del' p.id %}"
+                      ><i class="far fa-check-circle"></i
+                    ></a>
                     <a
                       type="button"
                       class="btn btn-dark"
                       data-bs-dismiss="modal"
                     >
-                    <i class="far fa-times-circle"></i>
-                      </a>
+                      <i class="far fa-times-circle"></i>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -110,10 +104,9 @@
             {% endfor %}
             <tfoot class="bg-dark text-light text-center">
               <tr>
-                <td>S.N.</td>
-                <td>Name</td>
-                <td>Designation</td>
-                <td>Contact No.</td>
+                <td>Sl. No.</td>
+                <td>Parts Name</td>
+                <td>Price</td>
                 <td>Action</td>
               </tr>
             </tfoot>

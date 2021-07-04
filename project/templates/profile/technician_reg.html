@@ -1,16 +1,14 @@
-{% include "profilebase.html" %} 
-{% load humanize %}
-{% block main %}
+{% include "profile/profilebase.html" %} {% block main %}
 <div class="container-fluid">
   <div class="bg-dark mt-1">
-    <p class="nav-link text-light text-center">Parts Registrations</p>
+    <p class="nav-link text-light text-center">Technician Registrations</p>
   </div>
 
   <div class="row">
     <div class="col-6">
       <div class="card">
         <div class="card-header bg-dark text-light text-center">
-          Add New Parts
+          Add New Technicians
         </div>
         <div class="card-body">
           <form action="" method="post">
@@ -18,15 +16,22 @@
             <input
               class="form-control mt-2"
               type="text"
-              name="reqPartName"
-              placeholder="Parts Name"
+              name="technicianName"
+              placeholder="Technician Name"
+              required
+            />
+            <input
+              class="form-control mt-2"
+              type="text"
+              name="disignation"
+              placeholder="Technician Designation"
               required
             />
             <input
               class="form-control mt-2"
               type="number"
-              name="price"
-              placeholder="Price"
+              name="contactNo"
+              placeholder="Technician Contact No."
               required
             />
             <button class="btn btn-dark btn-sm mt-2" type="submit">Save</button>
@@ -42,18 +47,20 @@
           <table class="table table-bordered">
             <thead class="bg-dark text-light text-center">
               <tr>
-                <td>Sl. No.</td>
-                <td>Parts Name</td>
-                <td>Price</td>
+                <td>S.N.</td>
+                <td>Name</td>
+                <td>Designation</td>
+                <td>Contact No.</td>
                 <td>Action</td>
               </tr>
             </thead>
-            {% for p in prt %}
+            {% for tv in tva %}
             <tbody>
-              <tr class="">
+              <tr>
                 <td>{{forloop.counter}}</td>
-                <td>{{p.reqPartName | upper}}</td>
-                <td class="text-end">{{p.price | intcomma}}</td>
+                <td>{{tv.technicianName}}</td>
+                <td>{{tv.disignation}}</td>
+                <td>{{tv.contactNo}}</td>
                 <td class="text-center">
                   <a class="btn btn-dark m-1" href=""
                     ><i class="fas fa-edit"></i
@@ -61,7 +68,7 @@
                   <a
                     class="btn btn-danger m-1"
                     data-bs-toggle="modal"
-                    data-bs-target="#partsRegModal"
+                    data-bs-target="#techRegModal"
                     ><i class="fa fa-trash-alt"></i>
                   </a>
                 </td>
@@ -70,31 +77,34 @@
             <!-------------------------------------------------- Modal ------------------------------------------------->
             <div
               class="modal fade"
-              id="partsRegModal"
+              id="techRegModal"
               tabindex="-1"
-              aria-labelledby="partsRegModalLabel"
+              aria-labelledby="techRegModalLabel"
               aria-hidden="true"
             >
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="partsRegModalLabel">
+                    <h5 class="modal-title" id="techRegModalLabel">
                       Delete This Item ?
                     </h5>
                   </div>
-                  <div class="modal-body">Are you sure, You want delete this?</div>
+                  <div class="modal-body">
+                    Are you sure, You want delete this?
+                  </div>
                   <div class="modal-footer">
                     <a
                       class="btn btn-danger m-1"
-                      href="{% url 'parts_del' p.id %}"
-                      ><i class="far fa-check-circle"></i></a>
+                      href="{% url 'tech_del' tv.id %}"
+                      ><i class="far fa-check-circle"></i
+                    ></a>
                     <a
                       type="button"
                       class="btn btn-dark"
                       data-bs-dismiss="modal"
                     >
-                    <i class="far fa-times-circle"></i>
-                      </a>
+                      <i class="far fa-times-circle"></i>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -103,9 +113,10 @@
             {% endfor %}
             <tfoot class="bg-dark text-light text-center">
               <tr>
-                <td>Sl. No.</td>
-                <td>Parts Name</td>
-                <td>Price</td>
+                <td>S.N.</td>
+                <td>Name</td>
+                <td>Designation</td>
+                <td>Contact No.</td>
                 <td>Action</td>
               </tr>
             </tfoot>

@@ -4,6 +4,7 @@ from django.db.models.deletion import CASCADE
 from django.db.models.aggregates import Aggregate, Sum
 from datetime import datetime, date, timedelta
 
+
 class customerDetails(models.Model):
     custimerId = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
@@ -28,36 +29,49 @@ class customerDetails(models.Model):
     def __str__(self):
         return self.name
 
-    def amount_due(self): #for due amount 
+    def amount_due(self):  # for due amount
         payable = self.totalAmount
         paid = self.total_paid_amount()
         return payable - paid
 
-    def total_paid_amount(self): #for total paid amount
+    def total_paid_amount(self):  # for total paid amount
         tt = self.advanceAmount
         ap = self.amount_paid()
         return tt + ap
 
-    def amount_paid(self): #for paymennt
+    def amount_paid(self):  # for paymennt
         items = paymentOnEmi.objects.filter(refNo=self.custimerId)
         total = 0
         for item in items:
             total += item.paidAmount
         return total
 
-    def service_Calculation(self):
-        if self.service == 4:
-            td = timedelta(days = 73)
-            first_ser = self.purchaseDate
-            return first_ser + td
+    def service_1(self):
+        td = timedelta(days=73)
+        pDate = self.purchaseDate
+        return pDate + td
 
-        elif self.service == 3:
-            tdd = timedelta(days = 91)
-            first_service = self.purchaseDate
-            return first_service  + tdd
+    def service_2(self):
+        td = timedelta(days=73)
+        return self.service_1() + td
+
+    def service_3(self):
+        td = timedelta(days=73)
+        return self.service_2() + td
+
+    def service_4(self):
+        td = timedelta(days=73)
+        return self.service_3() + td
+
     def one_year_from_purchase_date(self):
-        years = timedelta(days = 364)
+        years = timedelta(days=364)
         return self.purchaseDate + years
+
+    def count(self):
+        exp = self.one_year_from_purchase_date()
+        tday = date.today()
+        cou = exp - tday
+        return cou.days
 
 
 # Payment Receipt........................................................
@@ -72,6 +86,8 @@ class paymentOnEmi(models.Model):
         return str(self.refNo)
 
 # Technician Registrations...............................................
+
+
 class techName(models.Model):
     technicianName = models.CharField(max_length=100)
     disignation = models.CharField(max_length=50)
@@ -81,6 +97,8 @@ class techName(models.Model):
         return self.technicianName
 
 # For Parts Registrations................................................
+
+
 class partsName(models.Model):
     reqPartName = models.CharField(max_length=100)
     price = models.IntegerField()

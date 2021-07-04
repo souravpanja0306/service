@@ -8,31 +8,33 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+
 # For Page of Profile.......................................
 
 
 @login_required(login_url="/login")
 def profile(request):
-    return render(request, "profile.html")
+    return render(request, "profile/profile.html")
 
 
 def amc(request):
-    return render(request, "amc.html")
+    return render(request, "main/amc.html")
 
 
 def emi(request):
-    return render(request, "emi.html")
+    return render(request, "main/emi.html")
 
 
 # This is the Home page & DashBoard Page...................
 @login_required(login_url="/login")
 def home(request):
-    tamt = customerDetails.objects.all().aggregate(
-        sum=Sum('totalAmount'))['sum']
-    tamt2 = customerDetails.objects.all().aggregate(
-        sum2=Sum('advanceAmount'))['sum2']
-    tamt3 = (tamt - tamt2)
-    return render(request, "home.html", {"tamt": tamt, "tamt2": tamt2, "tamt3": tamt3})
+    # tamt = customerDetails.objects.all().aggregate(
+    #     sum=Sum('totalAmount'))['sum']
+    # tamt2 = customerDetails.objects.all().aggregate(
+    #     sum2=Sum('advanceAmount'))['sum2']
+    # tamt3 = (tamt - tamt2)
+    # context = {"tamt": tamt, "tamt2": tamt2, "tamt3": tamt3}
+    return render(request, "main/home.html")
 
 
 # This The Login Page...........
@@ -51,7 +53,7 @@ def loginPage(request):
                 return redirect("/")
             else:
                 messages.warning(request, "Username or Password is incurrect")
-        return render(request, "login.html")
+        return render(request, "registrations/login.html")
 
 
 # For Registration of New Account................................
@@ -69,7 +71,7 @@ def registration(request):
                     request, user + "  Account created successfully")
                 return redirect("/login")
         context = {"regForm": regForm}
-        return render(request, "registration.html", context)
+        return render(request, "registrations/registration.html", context)
 
 
 # Create New Customer............................................
@@ -84,21 +86,21 @@ def customer(request):
             return redirect("/")
         else:
             messages.info(request, "Something Went Wrong")
-    return render(request, "customer.html")
+    return render(request, "main/customer.html")
 
 
 # Views Customer Detais, Payment Details and Etc..................
 @login_required(login_url="/login")
 def details(request):
     fmm = customerDetails.objects.all()  # fmm is normal variable
-    return render(request, "details.html", {"fmm": fmm})
+    return render(request, "main/details.html", {"fmm": fmm})
 
 
 @login_required(login_url="/login")
 def iddetails(request, id):
     ghh = customerDetails.objects.get(pk=id)
     phh = paymentOnEmi.objects.filter(refNo=id)
-    return render(request, "iddetails.html", {'ghh': ghh, 'phh': phh, 'id': id})
+    return render(request, "main/iddetails.html", {'ghh': ghh, 'phh': phh, 'id': id})
 
 
 # For Payment Page................................................
@@ -111,7 +113,7 @@ def payment(request, id):
         if ps.is_valid():
             ps.save()
             return redirect("/customer/details")
-    return render(request, "payment.html", {"ghh": ghh, "id": id})
+    return render(request, "main/payment.html", {"ghh": ghh, "id": id})
 
 
 # Payment Data Page.................................................
@@ -133,8 +135,7 @@ def logoutuser(request):
 @login_required(login_url="/login")
 def service(request):
     dtt = customerDetails.objects.all()
-    # print(dtt)
-    return render(request, "service.html", {"dtt": dtt})
+    return render(request, "main/service.html", {"dtt": dtt})
 
 
 # For Technician Requirement...........................
@@ -146,7 +147,7 @@ def technicianPage(request, id):
         if tc.is_valid():
             tc.save()
             return redirect("/customer/service")
-    return render(request, "technician.html", {"id": id, "tc": tc})
+    return render(request, "main/technician.html", {"id": id, "tc": tc})
 
 
 # Technician Registrations.....................................................
@@ -160,7 +161,7 @@ def techreg(request):
     else:
         tech = techNameForm()
         tva = techName.objects.all()
-    return render(request, "technician_reg.html", {"tva": tva})
+    return render(request, "profile/technician_reg.html", {"tva": tva})
 
 
 # Technician Delete............................................................
@@ -183,7 +184,7 @@ def partsreg(request):
     else:
         pts = partsNameForm()
         prt = partsName.objects.all()
-    return render(request, "parts_reg.html", {"prt": prt})
+    return render(request, "profile/parts_reg.html", {"prt": prt})
 
 
 # Parts Name Delete............................................................
