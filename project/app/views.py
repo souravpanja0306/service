@@ -7,14 +7,17 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from datetime import datetime, date, timedelta
 
 # For Page of Profile.......................................
 
 
 @login_required(login_url="/login")
 def profile(request):
-    return render(request, "profile/profile.html")
+    expectedDate = date(2021, 8, 15)
+    today = date.today()
+    calculations = (expectedDate - today)
+    return render(request, "profile/profile.html",{"counter":calculations})
 
 
 def amc(request):

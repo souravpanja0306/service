@@ -1,8 +1,13 @@
-{% include "main/base.html" %} {% block content %}
+{% load static %}
+{% include "main/base.html" %} 
+{% block content %}
 <div class="container-fluid">
   <div class="bg-dark mt-1">
     <p class="nav-link text-light text-center">EMI</p>
   </div>
-
+  <div class="container-fluid text-center">
+    <h1 class="text-danger">Under Constructions</h1>
+    <img src="/static/images/cons.jpg" alt="No Images">
+  </div>
   {% endblock content %}
 </div>
