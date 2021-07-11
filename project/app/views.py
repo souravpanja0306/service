@@ -17,7 +17,7 @@ def profile(request):
     expectedDate = date(2021, 8, 15)
     today = date.today()
     calculations = (expectedDate - today)
-    return render(request, "profile/profile.html",{"counter":calculations})
+    return render(request, "profile/profile.html", {"counter": calculations})
 
 
 def amc(request):
@@ -31,13 +31,16 @@ def emi(request):
 # This is the Home page & DashBoard Page...................
 @login_required(login_url="/login")
 def home(request):
-    # tamt = customerDetails.objects.all().aggregate(
-    #     sum=Sum('totalAmount'))['sum']
-    # tamt2 = customerDetails.objects.all().aggregate(
-    #     sum2=Sum('advanceAmount'))['sum2']
-    # tamt3 = (tamt - tamt2)
-    # context = {"tamt": tamt, "tamt2": tamt2, "tamt3": tamt3}
-    return render(request, "main/home.html")
+    tamt = customerDetails.objects.all().aggregate(
+        sum=Sum('totalAmount'))['sum']
+    adv = customerDetails.objects.all().aggregate(
+        sum2=Sum('advanceAmount'))['sum2']
+    paym = paymentOnEmi.objects.all().aggregate(sum3=Sum('paidAmount'))['sum3']
+
+    tamt2 = (adv + paym)
+    tamt3 = (tamt - tamt2)
+    context = {"tamt": tamt, "tamt2": tamt2, "tamt3": tamt3}
+    return render(request, "main/home.html", context)
 
 
 # This The Login Page...........

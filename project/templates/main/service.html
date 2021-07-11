@@ -63,10 +63,10 @@
           >
         </td>
         <td>
-          <a href="{% url 'technicianPage' dt.custimerId %}" class="text-danger"
-            ><strong>{{ dt.count }} Days </strong> -
-            {{dt.one_year_from_purchase_date}}</a
-          >
+          <a class="text-danger">
+            <strong>{{ dt.count }} Days </strong> -
+            {{dt.one_year_from_purchase_date}}
+          </a>
         </td>
       </tr>
       {% endfor %}

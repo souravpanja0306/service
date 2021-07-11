@@ -37,30 +37,66 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-light" href="/profile/technician_reg"
-            ><i class="fa fa-chalkboard-teacher"></i
-          ></a>
+            ><i class="fa fa-chalkboard-teacher"> Technician</i></a
+          >
         </li>
         <li class="nav-item">
           <a class="nav-link text-light" href="/profile/parts_reg"
-            ><i class="fas fa-cogs"></i
-          ></a>
+            ><i class="fas fa-cogs"> Parts</i></a
+          >
         </li>
       </div>
       <div class="d-flex">
         <li>
-          <a class="nav-link text-light" href="{% url 'logout' %}"
-            >Hello, Mr. {{request.user}}
-            <i
-              class="fas fa-sign-out-alt"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title="Logout"
-            ></i
-          ></a>
+          <a
+            type="button"
+            class="btn btn-dark"
+            data-bs-toggle="modal"
+            data-bs-target="#logout"
+          >
+            Hello, Mr. {{request.user}}
+            <i class="fas fa-sign-out-alt" title="Logout"></i>
+          </a>
         </li>
       </div>
     </ul>
-    {% block main %} {% endblock %}
+
+    <!-- Modal Start -->
+    <div
+      class="modal fade"
+      id="logout"
+      tabindex="-1"
+      aria-labelledby="logoutlabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="logoutlabel">
+              Logout Mr. {{request.user}}?
+            </h5>
+          </div>
+          <div class="modal-body">Are you sure, You want Logout ?</div>
+          <div class="modal-footer">
+            <a class="text-light btn btn-success" href="{% url 'logout' %}"
+              >Yes
+              <i
+                class="fas fa-sign-out-alt"
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Logout"
+              ></i
+            ></a>
+            <a type="button" class="btn btn-dark" data-bs-dismiss="modal">
+              <i class="far fa-times-circle"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal End -->
+
+    {% block main %}{% endblock %}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
