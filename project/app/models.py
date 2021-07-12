@@ -108,9 +108,15 @@ class partsName(models.Model):
 
 
 class serviceModel(models.Model):
+    status_choice = [
+        ("Pending", "Pending"),
+        ("Processing", "Processing"),
+        ("Done","Done")
+    ]
     customerRefId = models.CharField(max_length=10)
     attendTech = models.ForeignKey(techName, on_delete=models.CASCADE)
     parts = models.ForeignKey(partsName, on_delete=models.CASCADE)
+    status = models.CharField(max_length=10, choices=status_choice, null=True)
 
     def __str__(self):
         return str(self.attendTech)
