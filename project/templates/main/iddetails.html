@@ -86,6 +86,7 @@
             <th>Details (Cash/ Cheque)</th>
             <th>Amount Received</th>
             <th>Bill Amount</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -107,6 +108,15 @@
             <td>{{p.cashCheque}} -- {{p.chequeNo}}</td>
             <td class="text-right">{{p.paidAmount | intcomma}}</td>
             <td></td>
+            <td class="text-center">
+              <a
+                class="btn btn-dark btn-sm"
+                type="button"
+                href="/moneyreceipts"
+              >
+                M. Receipts
+              </a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
@@ -117,6 +127,7 @@
             <th class="text-right">Total</th>
             <th class="text-right">{{ghh.total_paid_amount | intcomma}}</th>
             <th class="text-right">{{ghh.totalAmount | intcomma}}</th>
+            <th class="text-center">Action</th>
           </tr>
         </tfoot>
       </table>

@@ -39,6 +39,7 @@ def home(request):
 
     tamt2 = (adv + paym)
     tamt3 = (tamt - tamt2)
+
     context = {"tamt": tamt, "tamt2": tamt2, "tamt3": tamt3}
     return render(request, "main/home.html", context)
 
@@ -199,3 +200,13 @@ def parts_del(request, id):
     ptd = partsName.objects.get(pk=id)
     ptd.delete()
     return redirect("/profile/parts_reg")
+
+
+@login_required(login_url="/login")
+def moneyreceipts(request):
+    customer_details = customerDetails.objects.all()
+    payment_data = paymentOnEmi.objects.all()
+
+    context = {"payment_data": payment_data,
+               "customer_details": customer_details}
+    return render(request, "memo/moneyReceipts.html", context)

@@ -111,7 +111,7 @@ class serviceModel(models.Model):
     status_choice = [
         ("Pending", "Pending"),
         ("Processing", "Processing"),
-        ("Done","Done")
+        ("Done", "Done")
     ]
     customerRefId = models.CharField(max_length=10)
     attendTech = models.ForeignKey(techName, on_delete=models.CASCADE)
