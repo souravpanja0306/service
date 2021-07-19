@@ -103,7 +103,8 @@
           </tr>
           {% for p in phh %}
           <tr>
-            <td>{{forloop.counter}}</td>
+            <!-- <td>{{forloop.counter}}</td> -->
+            <td>{{p.id}}</td>
             <td>{{p.paymentDate}} -- {{p.paymentDate | naturalday}}</td>
             <td>{{p.cashCheque}} -- {{p.chequeNo}}</td>
             <td class="text-right">{{p.paidAmount | intcomma}}</td>
@@ -112,7 +113,8 @@
               <a
                 class="btn btn-dark btn-sm"
                 type="button"
-                href="/moneyreceipts"
+                href="{% url 'moneyreceipts' p.id %}"
+                target="_blank"
               >
                 M. Receipts
               </a>

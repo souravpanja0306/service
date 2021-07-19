@@ -203,10 +203,11 @@ def parts_del(request, id):
 
 
 @login_required(login_url="/login")
-def moneyreceipts(request):
-    customer_details = customerDetails.objects.all()
-    payment_data = paymentOnEmi.objects.all()
+def moneyreceipts(request, id):
+    customer_details = customerDetails.objects.filter(pk=id)
+    payment_data = paymentOnEmi.objects.get(pk=id)
 
     context = {"payment_data": payment_data,
-               "customer_details": customer_details}
+               "customer_details": customer_details,
+               "id": id}
     return render(request, "memo/moneyReceipts.html", context)

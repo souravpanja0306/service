@@ -87,9 +87,25 @@ button:hover {
 .w25 {
   width: 25%;
 }
+.w20 {
+  width: 20%;
+}
+.w30 {
+  width: 30%;
+}
+.w35 {
+  width: 35%;
+}
 .w33 {
   width: 33.33%;
 }
 .w50 {
   width: 50%;
+}
+.letter {
+  font-size: 22px;
+}
+.pt15 {
+  padding-top: 15px;
+  padding-bottom: 5px;
 }
